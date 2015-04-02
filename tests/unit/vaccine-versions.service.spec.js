@@ -1,7 +1,11 @@
 /*jshint expr: true*/
 describe('eha.vaccine-versions.service', function() {
   'use strict';
-
+  /*
+  This is a PUBLIC REPO
+  Do NOT copy test data from test/prod DB's
+  Make up your own personal details for test data
+  */
   var service;
   var docVersions;
 
