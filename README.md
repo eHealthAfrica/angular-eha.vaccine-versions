@@ -1,8 +1,20 @@
 # angular-eha.vaccine-versions
 
-[![Build Status](https://travis-ci.org/eHealthAfrica/vaccine-versions.svg)](https://travis-ci.org/eHealthAfrica/vaccine-versions) ![Dependecy Status](https://david-dm.org/eHealthAfrica/vaccine-versions.svg) ![Dev Dependecy Status](https://david-dm.org/eHealthAfrica/vaccine-versions/dev-status.svg)
-
 ## Usage
+
+Upgrades documents for the Vaccine trial to newer versions. Checks that the app can handle document version
+
+```javascript
+app.controller(function(ehaVaccineVersionsService, participant, $state) {
+  try {
+    $scope.participant = ehaVaccineVersionsService(participant);
+  } catch(e) {
+    // The converter will throw an error for unkown doc versions
+    alert('This document is written by a newer version of the app, youll need to upgrade before you can edit it');
+    $state.go('start');
+  }
+});
+```
 
 ## Installation
 
@@ -39,26 +51,6 @@ wiredep: {
 ```
 
 Then you're free to include whichever bundle you prefer in what ever manner you prefer.
-
-### Example
-
-```html
-<html ng-app="backButtonExample">
-  <head>
-    <title>Back Button Example</title>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-eha.vaccine-versions/dist/vaccine-versions.js"></script>
-    <script>
-    angular.module('backButtonExample', [
-      'eha.vaccine-versions'
-    ]);
-    </script>
-  </head>
-  <body>
-    <!-- Put an example here! -->
-  </body>
-</html>
-```
 
 ## Contributing
 
@@ -117,26 +109,6 @@ grunt test:watch
 
 Local development is made easy, simply make use of either `npm link` or `bower link` to link the local component to your client application and then use `grunt watch` to continuously build the project.
 
-### Transpiling templates (html2js)
-
-Transpiling our html templates into js allows us to neatly push them into the `$templateCache`.
-
-To transpile the templates it's another simple grunt command:
-
-```bash
-grunt templates
-```
-
-This will compile the templates to the `dist/` folder. But it's probably best to avoid this all together. Both the `grunt test` and `grunt release` commands take care of all of this for you.
-
-If you need to override the default template, simply replace what's already in the `$templateCache` with what ever you want. One way to achieve this is like this:
-
-```html
-<script id="templates/back-button.directive.tpl.html" type="text/html">
-    <button>I'm a button!</button>
-</script>
-```
-
 ## Release Process
 
 To make a release, ensure you have issued `grunt build`, committed the distribution package and tagged the commit with an appropriate version according to the [SemVer spec](http://semver.org/).
@@ -159,7 +131,7 @@ To publish a new version to npm, simply issue from the command line prior making
 npm publish
 ```
 
-### Publishing to bower
+### Publishing to bower
 
 Publishing to bower is slightly simpler in so far that you only have to do it once, and not explicitly for every release like npm:
 
