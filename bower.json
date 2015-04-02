@@ -1,7 +1,7 @@
 {
   "name": "angular-eha.vaccine-versions",
   "description": "converts vaccine trial docs between different versions",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "authors": [
     "Karl Westin <karl.westin@gmail.com>"
   ],
@@ -12,7 +12,7 @@
   "homepage": "https://github.com/eHealthAfrica/generator-eha",
   "keywords": "",
   "main": "dist/vaccine-versions.js",
-  
+
   "license": "Apache-2.0",
   "ignore": [
     "**/.*",

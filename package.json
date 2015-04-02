@@ -1,12 +1,12 @@
 {
   "name": "angular-eha.vaccine-versions",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "converts vaccine trial docs between different versions",
   "main": "dist/vaccine-versions.js",
   "scripts": {
     "test": "grunt test"
   },
-  
+
   "author": "Karl Westin <karl.westin@gmail.com>",
   "license": "Apache-2.0",
   "keywords": "",
