@@ -1,6 +1,6 @@
 {
   "name": "angular-eha.vaccine-versions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "converts vaccine trial docs between different versions",
   "main": "dist/vaccine-versions.js",
   "scripts": {

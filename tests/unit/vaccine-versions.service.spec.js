@@ -40,6 +40,26 @@ describe('eha.vaccine-versions.service', function() {
         paymentPhoneNumber: '1112222',
         enrollmentDate: new Date().toJSON(),
         version: '1.0.2'
+      },
+      '1.0.3': {
+        firstName: 'test',
+        lastName: 'testSon',
+        cdcId: 'KBU-111222',
+        _id: 'KBU-111222',
+        enrollmentSite: 'KBU',
+        photograph: {
+          mimeType: 'image/jpeg',
+          data: 'photo.jpg'
+        },
+        paymentPhoneNumber: '1112222',
+        enrollmentDate: new Date().toJSON(),
+        version: '1.0.3',
+        _attachments: {
+          'photo.jpg': {
+            'content_type': 'image/jpeg',
+            data: 'thing...'
+          }
+        }
       }
     };
   }));
@@ -50,7 +70,7 @@ describe('eha.vaccine-versions.service', function() {
     });
 
     it('should define a current version', function() {
-      expect(service.current).to.equal('1.0.2');
+      expect(service.current).to.equal('1.0.3');
     });
 
     it('should convert a doc with \'undefined\' versions', function() {
@@ -61,8 +81,15 @@ describe('eha.vaccine-versions.service', function() {
       expect(converted.version).to.equal(service.current);
     });
 
+    it('should convert a doc with 1.0.2 version to 1.0.3', function() {
+      var converted = service(docVersions['1.0.2']);
+
+      expect(converted.photograph.data).to.equal('photo.jpg');
+      expect(converted._attachments['photo.jpg'].data).to.equal('thing...');
+    });
+
     it('should not convert a doc of current version', function() {
-      var doc = docVersions['1.0.2'];
+      var doc = docVersions['1.0.3'];
       var before = JSON.stringify(doc);
       var after = service(doc);
 

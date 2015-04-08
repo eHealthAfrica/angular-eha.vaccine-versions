@@ -19,6 +19,22 @@
         doc.version = '1.0.2';
 
         return doc;
+      },
+      '1.0.3': function(doc) {
+        var filename = 'photo.jpg';
+
+        if (doc.photograph.data && doc.photograph.data !== filename) {
+          var data = doc.photograph.data;
+          doc._attachments = {};
+          doc._attachments[filename] = {
+            'content_type': 'image/jpeg',
+            'data': data
+          };
+          doc.photograph.data = filename;
+        }
+
+        doc.version = '1.0.3';
+        return doc;
       }
     };
 
